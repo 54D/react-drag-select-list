@@ -17,6 +17,7 @@ const boxesIntersect = (box1: BoundingBox, box2: BoundingBox) =>
 
 export type DragSelectListProps<T> = HTMLAttributes<HTMLDivElement> & {
     selectionMode?: 'default'|'append'|'remove',
+    detectionAreaStyle?: CSSProperties,
     containerStyle?: CSSProperties,
     selectorStyle?: CSSProperties,
     onSelectionChange?: (selectedIndices: number[]) => void,
@@ -30,6 +31,7 @@ export type DragSelectListProps<T> = HTMLAttributes<HTMLDivElement> & {
 const DragSelectList = <DataType,>(
     {
         selectionMode = 'default',
+        detectionAreaStyle,
         containerStyle,
         selectorStyle,
         onSelectionChange,
@@ -118,7 +120,7 @@ const DragSelectList = <DataType,>(
     }, [selectionBoxStart, selectionBoxEnd]);
 
     return (
-        <div onMouseDown={mouseDownHandler}>
+        <div style={detectionAreaStyle} onMouseDown={mouseDownHandler}>
             {selectionBoxStart && selectionBoxEnd && (
                 <div style={{ position: 'absolute', zIndex: 50, ...selectorStyle, ...calculateSelectionBox()}}>
                 </div>

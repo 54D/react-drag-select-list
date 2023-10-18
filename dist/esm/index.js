@@ -65,7 +65,7 @@ var boxesIntersect = function (box1, box2) {
         box1.bottom > box2.top;
 };
 var DragSelectList = function (_a) {
-    var _b = _a.selectionMode, selectionMode = _b === void 0 ? 'default' : _b, containerStyle = _a.containerStyle, selectorStyle = _a.selectorStyle, onSelectionChange = _a.onSelectionChange, data = _a.data, dataKeyExtractor = _a.dataKeyExtractor, renderItem = _a.renderItem, children = _a.children; __rest(_a, ["selectionMode", "containerStyle", "selectorStyle", "onSelectionChange", "data", "dataKeyExtractor", "renderItem", "children"]);
+    var _b = _a.selectionMode, selectionMode = _b === void 0 ? 'default' : _b, detectionAreaStyle = _a.detectionAreaStyle, containerStyle = _a.containerStyle, selectorStyle = _a.selectorStyle, onSelectionChange = _a.onSelectionChange, data = _a.data, dataKeyExtractor = _a.dataKeyExtractor, renderItem = _a.renderItem, children = _a.children; __rest(_a, ["selectionMode", "detectionAreaStyle", "containerStyle", "selectorStyle", "onSelectionChange", "data", "dataKeyExtractor", "renderItem", "children"]);
     var itemsContainerRef = useRef(null);
     var _c = useState(undefined), selectionBoxStart = _c[0], setSelectionBoxStart = _c[1];
     var _d = useState(undefined), selectionBoxEnd = _d[0], setSelectionBoxEnd = _d[1];
@@ -140,7 +140,7 @@ var DragSelectList = function (_a) {
                         [];
         setSelectedBoxIndices(newSelectedBoxIndices);
     }, [selectionBoxStart, selectionBoxEnd]);
-    return (React.createElement("div", { onMouseDown: mouseDownHandler },
+    return (React.createElement("div", { style: detectionAreaStyle, onMouseDown: mouseDownHandler },
         selectionBoxStart && selectionBoxEnd && (React.createElement("div", { style: __assign(__assign({ position: 'absolute', zIndex: 50 }, selectorStyle), calculateSelectionBox()) })),
         React.createElement("div", { ref: itemsContainerRef, style: containerStyle },
             data && renderItem && data.map(function (item, index) {
