@@ -1,6 +1,6 @@
 import React, {CSSProperties, HTMLAttributes} from "react";
 import {useCallback, useEffect, useState, useRef, MouseEvent as ReactMouseEvent } from "react";
-import {DragSelectListItemProps} from "../DragSelectListItem/DragSelectListItem";
+import DragSelectListItem, {DragSelectListItemProps} from "../DragSelectListItem/DragSelectListItem";
 
 type BoundingBox = {
     top: number
@@ -15,16 +15,30 @@ const boxesIntersect = (box1: BoundingBox, box2: BoundingBox) =>
     box1.top < box2.bottom &&
     box1.bottom > box2.top;
 
-export type DragSelectListProps = HTMLAttributes<HTMLDivElement> & {
+export type DragSelectListProps<T> = HTMLAttributes<HTMLDivElement> & {
     selectionMode?: 'default'|'append'|'remove',
     containerStyle?: CSSProperties,
     selectorStyle?: CSSProperties,
     onSelectionChange?: (selectedIndices: number[]) => void,
+    data?: T[],
+    dataKeyExtractor?: (data: T) => string,
+    renderItem?: (data: T, index?: number) => JSX.Element,
     //children: JSX.Element<DragSelectListItemProps>[],
     children: JSX.Element,
 };
 
-const DragSelectList = ({ selectionMode = 'default', containerStyle, selectorStyle, onSelectionChange, children, ...props }: DragSelectListProps) => {
+const DragSelectList = <DataType,>(
+    {
+        selectionMode = 'default',
+        containerStyle,
+        selectorStyle,
+        onSelectionChange,
+        data,
+        dataKeyExtractor,
+        renderItem,
+        children,
+        ...props
+    }: DragSelectListProps<DataType>) => {
 
     const itemsContainerRef = useRef<HTMLDivElement>(null);
 
@@ -111,6 +125,17 @@ const DragSelectList = ({ selectionMode = 'default', containerStyle, selectorSty
                 </div>
             )}
             <div ref={itemsContainerRef} style={containerStyle}>
+                {data && renderItem && data.map((item, index) => {
+                    return (
+                        <DragSelectListItem
+                            key={index}
+                            dataKey={dataKeyExtractor ? dataKeyExtractor(item) : index.toString()}
+                            data={item}
+                        >
+                            {renderItem(item, index)}
+                        </DragSelectListItem>
+                    );
+                })}
                 {children}
             </div>
         </div>
