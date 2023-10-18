@@ -4,7 +4,7 @@
   "author": "54D",
   "private": true,
   "scripts": {
-    "rollup": "rollup -c"
+    "publish": "yarn tsc --emitDeclarationOnly && yarn rollup -c"
   },
   "type": "module",
   "main": "dist/cjs/index.js",
