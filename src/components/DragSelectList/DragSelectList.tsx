@@ -100,9 +100,9 @@ const DragSelectList = <DataType,>(
                 bottom: selectionBox.top - window.scrollY + selectionBox.height,
                 right: selectionBox.left - window.scrollX + selectionBox.width,
             }, {
-                top: itemBoundingBox.top ,
+                top: itemBoundingBox.top,
                 left: itemBoundingBox.left,
-                bottom: itemBoundingBox.bottom ,
+                bottom: itemBoundingBox.bottom,
                 right: itemBoundingBox.right,
             });
         }).map((item, index) => {
@@ -118,7 +118,7 @@ const DragSelectList = <DataType,>(
     }, [selectionBoxStart, selectionBoxEnd]);
 
     return (
-        <div style={{ height: '100%', width: '100%' }} onMouseDown={mouseDownHandler}>
+        <div onMouseDown={mouseDownHandler}>
             {selectionBoxStart && selectionBoxEnd && (
                 <div style={{ position: 'absolute', zIndex: 50, ...selectorStyle, ...calculateSelectionBox()}}>
                 </div>

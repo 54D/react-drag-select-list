@@ -140,7 +140,7 @@ var DragSelectList = function (_a) {
                         [];
         setSelectedBoxIndices(newSelectedBoxIndices);
     }, [selectionBoxStart, selectionBoxEnd]);
-    return (React.createElement("div", { style: { height: '100%', width: '100%' }, onMouseDown: mouseDownHandler },
+    return (React.createElement("div", { onMouseDown: mouseDownHandler },
         selectionBoxStart && selectionBoxEnd && (React.createElement("div", { style: __assign(__assign({ position: 'absolute', zIndex: 50 }, selectorStyle), calculateSelectionBox()) })),
         React.createElement("div", { ref: itemsContainerRef, style: containerStyle },
             data && renderItem && data.map(function (item, index) {
