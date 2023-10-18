@@ -24,7 +24,7 @@ export type DragSelectListProps<T> = HTMLAttributes<HTMLDivElement> & {
     dataKeyExtractor?: (data: T) => string,
     renderItem?: (data: T, index?: number) => JSX.Element,
     //children: JSX.Element<DragSelectListItemProps>[],
-    children: JSX.Element,
+    children: JSX.Element[],
 };
 
 const DragSelectList = <DataType,>(
