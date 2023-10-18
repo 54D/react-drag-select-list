@@ -121,7 +121,6 @@ const DragSelectList = <DataType,>(
         <div style={{ height: '100%', width: '100%' }} onMouseDown={mouseDownHandler}>
             {selectionBoxStart && selectionBoxEnd && (
                 <div style={{ position: 'absolute', zIndex: 50, ...selectorStyle, ...calculateSelectionBox()}}>
-                    {JSON.stringify(calculateSelectionBox())}
                 </div>
             )}
             <div ref={itemsContainerRef} style={containerStyle}>
